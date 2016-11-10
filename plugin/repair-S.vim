@@ -14,10 +14,10 @@
 "
 " ----------------------------------------------------------------------
 
-if exists("g:loaded_repair-S")
+if exists("g:loaded_repair_S")
     finish
 endif
-let g:loaded_repair-S = 1
+let g:loaded_repair_S = 1
 
 
 if !exists("autocommands_loaded")
@@ -29,6 +29,7 @@ if !exists("autocommands_loaded")
                 \ if &ft != 'markdown'
                 \ | call DeleteTrailingWhiteSpace()
                 \ | endif
+endif
 function! DeleteTrailingWhiteSpace() "{{{2
     normal mZ
     %s/\s\+$//e
