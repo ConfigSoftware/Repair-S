@@ -20,7 +20,6 @@ endif
 let g:loaded_repair_S = 1
 
 
-
 function! DeleteTrailingWhiteSpace() "{{{2
     normal mZ
     %s/\s\+$//e
