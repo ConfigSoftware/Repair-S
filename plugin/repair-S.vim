@@ -14,21 +14,13 @@
 "
 " ----------------------------------------------------------------------
 
-if exists("g:loaded_repair-S")
+if exists("g:loaded_repair_S")
     finish
 endif
-let g:loaded_repair-S = 1
+let g:loaded_repair_S = 1
 
 
-if !exists("autocommands_loaded")
-    let autocommands_loaded = 1
-    au FileWritePre * set bin
-    au FileWritePost * set nobin
-    au BufWritePost,FileWritePost * call LastMod()
-    au BufWrite *
-                \ if &ft != 'markdown'
-                \ | call DeleteTrailingWhiteSpace()
-                \ | endif
+
 function! DeleteTrailingWhiteSpace() "{{{2
     normal mZ
     %s/\s\+$//e
@@ -44,6 +36,7 @@ function! DeleteTrailingWhiteSpace() "{{{2
     endwhile
     unlet line_number
 endfunction
+
 function! LastMod() "{{{2
     let l:line = line(".")
     let l:col = col(".")
@@ -57,3 +50,15 @@ function! LastMod() "{{{2
     call cursor(l:line, l:col)
     "call setpos('.', a:save_cursor)
 endfunction
+
+"if !exists("autocommands_loaded")
+"    let autocommands_loaded = 1
+    au FileWritePre * set bin
+    au FileWritePost * set nobin
+    au BufWritePost,FileWritePost * call LastMod()
+    au BufWrite *
+                \ if &ft != 'markdown'
+                \ | call DeleteTrailingWhiteSpace()
+                \ | endif
+"endif
+"au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
